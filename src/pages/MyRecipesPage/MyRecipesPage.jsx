@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import './RecipesPage.css';
+import './MyRecipesPage.css';
 import NavBar from '../../components/NavBar/NavBar';
 
-class RecipesPage extends Component {
+class MyRecipesPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -10,11 +10,11 @@ class RecipesPage extends Component {
     }
   }
 
-  //display recipes all users create
+  //CRUD portion referr to discogs app
   render() {
       return (
-          <div className='recipes'>
-              <header className="header-footer">Recipes</header>
+          <div className='myrecipes'>
+              <header className="header-footer">My Recipes</header>
               <a href='/'>BACK</a><br />
           </div>
       )
@@ -23,4 +23,4 @@ class RecipesPage extends Component {
 
 
 
-export default RecipesPage;
+export default MyRecipesPage;

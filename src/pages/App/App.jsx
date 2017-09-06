@@ -10,10 +10,17 @@ import LoginPage from '../LoginPage/LoginPage';
 import ProductPage from '../ProductPage/ProductPage'
 import SignupPage from '../SignupPage/SignupPage';
 import RecipesPage from '../RecipesPage/RecipesPage';
+import MyRecipesPage from '../MyRecipesPage/MyRecipesPage';
 import userService from '../../utils/userService';
 import NavBar from '../../components/NavBar/NavBar';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: null
+    };
+  }
 
   handleSignup = () => {
     this.setState({user: userService.getUser()});
@@ -40,7 +47,7 @@ class App extends Component {
         <header className='header-footer'>SNOBAR ICECREAM</header>
         <Router>
           <div> 
-            {/* <NavBar user={this.state.user} handleLogout={this.handleLogout} /> */}
+            <NavBar user={this.state.user} handleLogout={this.handleLogout} />
           <Switch>
             <Route exact path='/' render={() => 
               <ProductPage
@@ -58,6 +65,12 @@ class App extends Component {
                   handleLogin={this.handleLogin}
                 />
               }/>
+              <Route exact path='/MyRecipesPage' render={() => (
+                  userService.getUser() ?
+                <MyRecipesPage />
+                :
+                <Redirect to='login' />
+              )}/>
               <Route exact path='/RecipesPage' render={() => (
                 userService.getUser() ?
                   <RecipesPage />

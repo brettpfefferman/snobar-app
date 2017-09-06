@@ -6,10 +6,6 @@ import NavBar from '../../components/NavBar/NavBar';
 const ProductPage = (props) => {
     return (
         <div className="ProductPage">
-            <NavBar 
-            user={props.user}
-            handleLogOut={props.handleLogout}
-            />
         </div>
     );
 }
