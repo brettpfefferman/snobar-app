@@ -1,26 +1,16 @@
 import React, {Component} from 'react';
 import './MyRecipesPage.css';
 import NavBar from '../../components/NavBar/NavBar';
+import MyRecipesForm from '../../components/MyRecipesForm/MyRecipesForm';
 
-class MyRecipesPage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      recipes: []
-    }
-  }
-
-  //CRUD portion referr to discogs app
-  render() {
-      return (
-          <div className='myrecipes'>
-              <header className="header-footer">My Recipes</header>
-              <a href='/'>BACK</a><br />
-          </div>
-      )
-  }
-}
-
-
-
+const MyRecipesPage = (props) => {
+    return (
+      <div className='MyRecipesForm'>
+        <MyRecipesForm
+          {...props}
+        />
+      </div>
+    );
+  };
+  
 export default MyRecipesPage;
