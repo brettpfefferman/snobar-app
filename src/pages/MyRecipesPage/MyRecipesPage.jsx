@@ -3,7 +3,7 @@ import Recipe from '../../components/Recipe/Recipe';
 import './MyRecipesPage.css';
 import {Link} from 'react-router-dom';
 import tokenService from '../../utils/tokenService';
-import { Button, Card, Row, Col } from 'react-materialize';
+import { Button, Card, Row, Col, i } from 'react-materialize';
 
 class MyRecipesPage extends Component {
   constructor() {
@@ -26,13 +26,20 @@ class MyRecipesPage extends Component {
 
   render() {
     return (
-      <div>
-        <h1>My Recipes</h1>
-        {this.state.recipes.map(recipe => 
-          <Recipe recipe={recipe}  key={recipe._id}/>
-        )}
-        <Link to='/newrecipe'>Add Recipe</Link>
-      </div>
+      <Col m={6} s={10}>
+        
+        <div class="container">
+        <Card classname='purple-grey'>
+          <h1>My Recipes</h1>
+          {this.state.recipes.map(recipe => 
+            <Recipe recipe={recipe}  key={recipe._id}/>
+          )}
+          </Card>
+          <div>
+            <Button floating large className='red' text-align='center' waves='light' icon='add' node='a' href="/newrecipe"> </Button>
+          </div>
+        </div>
+      </Col>
     );
   }
 };

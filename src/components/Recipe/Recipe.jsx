@@ -1,14 +1,16 @@
 import React from 'react';
-import {Col} from 'react-materialize'
+import {Col} from 'react-materialize';
+import {Card} from 'react-materialize'
 
 const Recipe = (props) => {
     return (
-        <Col s={4}>
+        <Col m={6} s={9}>
             <div>
-                <p>{props.recipe.title}</p>
-                <p>{props.recipe.product}</p>
-                <p>{props.recipe.recipe}</p>
-                <p>{props.recipe.user.name}</p>
+                <Card className='pink-grey' textClassName='recipe-text' text-align='center' title={props.recipe.title}>
+                    Product: {props.recipe.product}
+                    <br />
+                    Ingredients Used: {props.recipe.recipe}
+               </Card>
             </div>
         </Col>
     );

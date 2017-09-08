@@ -3,7 +3,7 @@ import Recipe from '../../components/Recipe/Recipe';
 import './RecipesPage.css';
 import NavBar from '../../components/NavBar/NavBar';
 import tokenService from '../../utils/tokenService';
-import {Row} from 'react-materialize'
+import {Row, Button} from 'react-materialize'
 
 
 class RecipesPage extends Component {
@@ -35,7 +35,7 @@ class RecipesPage extends Component {
                 <Recipe recipe={recipe} key={recipe._id} />
               )}
             </Row>
-            <a href='/'>BACK</a><br />
+            <Button text-align='center' waves='light' node='a' href="/">Back</Button>
           </div>
       )
   }
