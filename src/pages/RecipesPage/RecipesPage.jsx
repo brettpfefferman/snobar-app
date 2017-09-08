@@ -3,6 +3,7 @@ import Recipe from '../../components/Recipe/Recipe';
 import './RecipesPage.css';
 import NavBar from '../../components/NavBar/NavBar';
 import tokenService from '../../utils/tokenService';
+import {Row} from 'react-materialize'
 
 
 class RecipesPage extends Component {
@@ -29,9 +30,11 @@ class RecipesPage extends Component {
       return (
           <div>
             <h1> Recipes </h1>
-            {this.state.recipes.map(recipe => 
-              <Recipe recipe={recipe} key={recipe._id} />
-            )}
+            <Row>
+              {this.state.recipes.map(recipe => 
+                <Recipe recipe={recipe} key={recipe._id} />
+              )}
+            </Row>
             <a href='/'>BACK</a><br />
           </div>
       )
