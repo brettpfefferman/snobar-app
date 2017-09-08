@@ -24,8 +24,7 @@ class LoginForm extends Component {
         this.props.handleLogin();
         this.props.history.push('/');
       })
-      // invalid credentials - don't alert in YOUR app :)
-      .catch(err => alert('Invalid Credentials!'));
+  
   }
 
   render() {

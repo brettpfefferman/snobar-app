@@ -11,6 +11,7 @@ import ProductPage from '../ProductPage/ProductPage'
 import SignupPage from '../SignupPage/SignupPage';
 import RecipesPage from '../RecipesPage/RecipesPage';
 import MyRecipesPage from '../MyRecipesPage/MyRecipesPage';
+import NewRecipePage from '../NewRecipePage/NewRecipePage';
 import userService from '../../utils/userService';
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -65,15 +66,21 @@ class App extends Component {
                   handleLogin={this.handleLogin}
                 />
               }/>
-              <Route exact path='/MyRecipesPage' render={() => (
+              <Route exact path='/myrecipes' render={() => (
                   userService.getUser() ?
                 <MyRecipesPage />
                 :
                 <Redirect to='login' />
               )}/>
-              <Route exact path='/RecipesPage' render={() => (
+              <Route exact path='/recipes' render={() => (
                 userService.getUser() ?
                   <RecipesPage />
+                  :
+                  <Redirect to='/login' />
+              )}/>
+              <Route exact path='/newrecipe' render={(props) => (
+                userService.getUser() ?
+                  <NewRecipePage history={props.history} />
                   :
                   <Redirect to='/login' />
               )}/>

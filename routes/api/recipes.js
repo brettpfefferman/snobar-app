@@ -4,7 +4,9 @@ var recipesCtrl = require('../../controllers/recipes');
 
 /*---------- Protected Routes ----------*/
 
-router.get('/', checkAuth(), recipesCtrl.index);
+router.get('/', recipesCtrl.index);
+router.get('/user', recipesCtrl.forUser);
+router.post('/', recipesCtrl.create);
 
 
 /*----- Helper Functions -----*/

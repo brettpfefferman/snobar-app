@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import userService from '../../utils/userService';
-
+import tokenService from '../../utils/tokenService';
 
 class MyRecipesForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
+        title: '',
+        product: '',
+        recipe: ''
+    };
   }
+
 
   handleChange = (field, e) => {
     this.setState({
@@ -18,50 +22,54 @@ class MyRecipesForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    userService.login(this.state)
-      .then(() => {
-        this.props.history.push('/recipes');
-      })
+    fetch('/api/recipes', {
+        method: 'POST',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }),
+        body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(() => {
+        this.props.history.push('/myrecipes');
+    });
   }
 
   render() {
         return (
             <div>
-            <header className="header-footer">Create Your Recipe</header>
-                <div className='MyRecipesForm'>
-                    <form>
-                        <label>
-                            Recipe Name:
-                            <input type="text" value={this.state.value} onChange={this.handleChange} />
-                        </label>
+            <header className="create-recipe">Create Your Recipe:</header>
+            <br/>
+                <form className="MyRecipesForm">
+                    <div className="recipe-form">     
+                        <input type="text" className="recipename" placeholder="Name of your recipe" value={this.state.title} onChange={(e) => this.handleChange('title', e)} />   
+                    </div>
                         <br />
-                        <label>
-                            Which SnoBar product did you use?
-                            <select value={this.state.value} onChange={this.handleChange}>
-                                <option value="chocolate">Chocolate</option>
-                                <option value="mango">Mango</option>
-                                <option value="vanilla">Vanilla</option>
-                                <option value="rootbeer">Root Beer</option>
-                                <option value="blackcherry">Black Cherry</option>
-                            </select>
-                        </label>
+                    <div className="recipe-form"> 
+                          <select value="SnoBar Product" type="text" value={this.state.product} onChange={(e) => this.handleChange('product', e)}>> 
+                            <option value="">SnoBar Product</option>
+                            <option value="Chocolate">Chocolate</option>
+                            <option value="Lime Sherbert">Lime Sherbert</option>
+                            <option value="Cherry">Cherry</option>
+                            <option value="Pecan Pie">Pecan Pie</option>
+                            <option value="Birthday Cake">Birthday Cake</option>
+                          </select>
+                    </div>
                         <br />
-                        <label>
-                            Tell us about your recipe:
-                            <textarea value={this.state.value} onChange={this.handleChange} />
-                        </label>          
-                        <div className="form-group">
-                            <div className="col-sm-12 text-center">
-                            <button className="btn submit-btn-default">Submit</button>&nbsp;&nbsp;&nbsp;
-                            <Link to='/'>Cancel</Link>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    <div className="recipe-form">
+                          <textarea name="description" placeholder="Ingredients used:" type="text" value={this.state.recipe} onChange={(e) => this.handleChange('recipe', e)}/>
+                          
+                    </div>         
+                    <div className="recipe-form"> 
+                        <button className="btn submit-btn-default" onClick={this.handleSubmit}>Submit</button>&nbsp;&nbsp;&nbsp;
+                        <Link to='/myrecipes'>Cancel</Link>    
+                    </div>
+                </form>
             </div>
-        )
+        );
     }
-}
+};
 
 
 export default MyRecipesForm;

@@ -10,13 +10,14 @@
     "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.11.10",
     "morgan": "^1.8.2",
+    "nuka-carousel": "^2.3.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
+    "react-materialize": "^1.0.11",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
-    "serve-favicon": "^2.4.3",
-    "startbootstrap-full-slider": "^4.0.0-alpha"
+    "serve-favicon": "^2.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
